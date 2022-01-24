@@ -67,7 +67,6 @@ body{
 	justify-content: space-between;
 	align-items: center;
 	min-height: 65px;
-	z-index: 100;
 }
 
 .header__item{
@@ -83,6 +82,7 @@ body{
 	width: 30px;
 	height: 20px;
 	position: relative;
+	cursor: pointer;
 	&::before,&::after{
 		content: '';
 		background-color: #1FA181;
@@ -90,6 +90,7 @@ body{
 		width: 100%;
 		height: 4px;
 		left: 0;
+		transition: all .2s linear;
 	}
 	&::before{
 		top: 0;
@@ -105,6 +106,18 @@ body{
 		top: 50%;
 		background-color: #1FA181;
 		transform: translateY(-50%);
+		transition: all .2s linear;
+	}
+	&.active::before{
+		top: 50%;
+		transform: rotate(-45deg) translate(1px, -2px);
+	}
+	&.active::after{
+		bottom: 50%;
+		transform: rotate(45deg) translate(1px, 2px);
+	}
+	&.active span{
+		transform: scale(0) translate(0px, -50%);
 	}
 }
 
@@ -240,11 +253,19 @@ body{
 
 .slider__item{
 	display: flex;
+	border-radius: 20px;
+	overflow: hidden;
 }
 
 .slider__photo{
 	width: 60%;
-	z-index: 1;
+}
+
+.slider__img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
 }
 
 .slider__panel{
@@ -272,6 +293,7 @@ body{
 .slider__btn{
 	display: flex;
 	align-items: center;
+	cursor: pointer;
 }
 
 .slider__btn-prev{
@@ -293,7 +315,8 @@ body{
 	height: 100%;
 	width: 40%;
 	position: relative;
-	z-index: 10;
+	z-index: 2;
+	border-radius: 20px;
 }
 
 .checkup__title{
@@ -413,6 +436,141 @@ body{
 }
 
 
+/* POPUP
+====================*/
+
+.popup{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+	z-index: 5;
+	opacity: 0;
+	visibility: hidden;
+	transition: all .8s ease;
+}
+
+.popup.open{
+	opacity: 1;
+	visibility: visible;
+}
+
+.popup__body{
+	min-height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 30px 10px;
+	position: relative;
+	z-index: 5;
+}
+
+.popup__content{
+	background-color: #fff;
+	border-radius: 20px;
+	max-width: 650px;
+	position: relative;
+	padding: 30px;
+	z-index: 6;
+}
+
+.popup__close{
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	width: 20px;
+	height: 20px;
+}
+
+.close{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	fill: #7A7A7A;
+	&:hover{
+		fill: #000;
+	}
+}
+
+/* FORM
+====================*/
+.form__item{
+	max-width: 300px;
+	margin: 10px auto 0 auto;
+}
+
+.form__title{
+	font-weight: 700;
+}
+
+.form__input{
+	border: 1px solid #7A7A7A;
+	border-radius: 5px;
+	width: 100%;
+	padding: 5px;
+	transition: all 0.2s linear;
+	&:focus{
+		box-shadow: 0 0 10px #7A7A7A;
+	}
+}
+
+.form__item .btn{
+	margin: 10px 50px 0;
+}
+
+.form__input._error{
+	box-shadow: 0 0 10px red;
+}
+
+
+/* FEEDBACK
+====================*/
+
+.feedback {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+	opacity: 0;
+	visibility: hidden;
+	transition: all .8s ease;
+	&.open{
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+.feedback__body{
+	min-height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 30px 10px;
+}
+
+.feedback__content {
+	background-color: #fff;
+	border-radius: 20px;
+	max-width: 650px;
+	padding: 50px;
+	position: relative;
+	text-align: center;
+	border: 1px solid #0DBC91;
+}
+
+.feedback__close{
+	position: absolute;
+	right: 15px;
+	top: 10px;
+	width: 20px;
+	height: 20px;
+}
+.feedback__title {
+	font-weight: 700;
+	color: #000;
+}
+
+
 /* MEDIA
 ====================*/
 @media (max-width: 1230px){
@@ -434,31 +592,11 @@ body{
 		transform: translateX(15px);
 	}
 
-	/* Slider */
-	.slider__photo{
-		width: 50%;
-	}
-
-	.slider__img{
-		width: 100%;
-		height: 100%;
-		object-position: center;
-		object-fit: cover;
-	}
-
 	/* Checkup */
-	.checkup{
-		width: 50%;
-		padding-right: 30px;
-	}
-
 	.checkup__title{
 		font-size: 24px;
 	}
 
-	.checkup__trapezoid{
-		display: none;
-	}
 }
 
 @media (max-width: 990px){
@@ -513,7 +651,7 @@ body{
 		width: 100%;
 		left: 0;
 		top: 0;
-		z-index: 100;
+		z-index: 3;
 		& button{
 			display: none;
 		}
@@ -524,19 +662,6 @@ body{
 
 	.header__burger{
 		display: block;
-		cursor: pointer;
-		transition: all .2s linear;
-		&.active::before{
-			top: 50%;
-			transform: rotate(-45deg) translate(0px, -50%);
-		}
-		&.active::after{
-			bottom: 45%;
-			transform: rotate(45deg) translate(0px, 50%);
-		}
-		&.active span{
-			transform: scale(0) translate(0px, -50%);
-		}
 	}
 
 	.map{
@@ -622,6 +747,10 @@ body{
 
 	.checkup__btn{
 		justify-content: center;
+	}
+
+	.checkup__trapezoid{
+		display: none;
 	}
 
 	/* Footer */

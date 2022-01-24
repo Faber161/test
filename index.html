@@ -53,6 +53,14 @@
 			<symbol id="arrow" viewBox="0 0 34 18">
 				<path d="M1.32817 7.67186H29.4551L24.7957 3.03512C24.2758 2.51768 24.2739 1.67678 24.7913 1.15689C25.3087 0.636925 26.1497 0.635 26.6696 1.15237L33.6093 8.05861C33.6098 8.05901 33.6101 8.05947 33.6105 8.05987C34.1291 8.57731 34.1307 9.42093 33.6106 9.94009C33.6102 9.94049 33.6098 9.94095 33.6094 9.94135L26.6697 16.8476C26.1499 17.3649 25.3089 17.3631 24.7914 16.8431C24.274 16.3232 24.276 15.4823 24.7959 14.9648L29.4551 10.3281H1.32817C0.594646 10.3281 4.57764e-05 9.7335 4.57764e-05 8.99998C4.57764e-05 8.26646 0.594646 7.67186 1.32817 7.67186Z"/>
 			</symbol>
+
+			<symbol id="close" viewBox="0 0 42 42">
+				<path d="M21.002,26.588l10.357,10.604c1.039,1.072,1.715,1.083,2.773,0l2.078-2.128
+				c1.018-1.042,1.087-1.726,0-2.839L25.245,21L36.211,9.775c1.027-1.055,1.047-1.767,0-2.84l-2.078-2.127
+				c-1.078-1.104-1.744-1.053-2.773,0L21.002,15.412L10.645,4.809c-1.029-1.053-1.695-1.104-2.773,0L5.794,6.936
+				c-1.048,1.073-1.029,1.785,0,2.84L16.759,21L5.794,32.225c-1.087,1.113-1.029,1.797,0,2.839l2.077,2.128
+				c1.049,1.083,1.725,1.072,2.773,0L21.002,26.588z"/>
+			</symbol>
 		</svg>
 
 		<header class="header">
@@ -93,7 +101,7 @@
 								</a>
 							</div>
 						</div>
-						<button class="btn btn--green">Записаться на прием</button>
+						<button class="btn btn--green popup-link">Записаться на прием</button>
 					</div>
 
 				</div>
@@ -105,7 +113,7 @@
 						<a href="#" class="nav__link">Специалисты</a>
 						<a href="#" class="nav__link">Цены</a>
 						<a href="#" class="nav__link">Контакты</a>
-						<button class="btn">Записаться на прием</button>
+						<button class="btn popup-link">Записаться на прием</button>
 				</div>
 			</nav>
 	
@@ -148,7 +156,7 @@
 									</ul>
 									<div class="checkup__price">Всего 2800₽ <span>3500₽</span></div>
 									<div class="checkup__btn">
-										<button class="btn btn--green">Записаться</button>
+										<button class="btn btn--green popup-link">Записаться</button>
 										<button class="btn">Подробнее</button>
 									</div>
 									<div class="checkup__trapezoid"></div>
@@ -171,7 +179,7 @@
 								</ul>
 								<div class="checkup__price">Всего 2800₽ <span>3500₽</span></div>
 								<div class="checkup__btn">
-									<button class="btn btn--green">Записаться</button>
+									<button class="btn btn--green popup-link">Записаться</button>
 									<button class="btn">Подробнее</button>
 								</div>
 								<div class="checkup__trapezoid"></div>
@@ -194,7 +202,7 @@
 								</ul>
 								<div class="checkup__price">Всего 2800₽ <span>3500₽</span></div>
 								<div class="checkup__btn">
-									<button class="btn btn--green">Записаться</button>
+									<button class="btn btn--green popup-link">Записаться</button>
 									<button class="btn">Подробнее</button>
 								</div>
 								<div class="checkup__trapezoid"></div>
@@ -217,7 +225,7 @@
 								</ul>
 								<div class="checkup__price">Всего 2800₽ <span>3500₽</span></div>
 								<div class="checkup__btn">
-									<button class="btn btn--green">Записаться</button>
+									<button class="btn btn--green popup-link">Записаться</button>
 									<button class="btn">Подробнее</button>
 								</div>
 								<div class="checkup__trapezoid"></div>
@@ -296,6 +304,51 @@
 				</div>
 			</div>
 		</footer>
+
+		<div id="popup" class="popup">
+			<div class="popup__body">
+				<div class="popup__content">
+					<a href="#" class="popup__close">
+						<svg class="close">
+							<use xlink:href="#close"></use>
+						</svg>
+					</a>
+					<div class="form">
+						<form action="mail.php" id="form" class="form__body">
+							<h2 class="form__title">
+								Сообщите нам ваши данные, и мы обязательно перезвоним.
+							</h2>
+							<div class="form__item">
+								<label for="formName">Ваше имя:</label>
+								<input id="formName" type="text" name="name" class="form__input _req">
+							</div>
+							<div class="form__item">
+								<label for="formTel">Ваше телефон:</label>
+							<input id="formTel" type="tel" name="tel" placeholder="+7 (999) 999-99-99" class="form__input _req">
+						</div>
+						<div class="form__item">
+						<button type="submit" class="btn btn--green" >Отправить</button>
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="feedback">
+			<div class="feedback__body">
+				<div class="feedback__content">
+					<a href="#" class="feedback__close">
+						<svg class="close">
+							<use xlink:href="#close"></use>
+						</svg>
+					</a>
+					<h2 class="feedback__title">Данные успешно отправлены</h2>
+					<div class="feedback__text">Специалист позвонит вам в ближайшее время</div>
+				</div>
+			</div>
+		</div>
+	
 	</div><!-- /wrapper -->
 
 	<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
